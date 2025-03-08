@@ -20,7 +20,7 @@ This tool is a Flask-based web application designed to scan and exploit Modbus d
 
 ### 1️⃣ Clone the Repository
 ```bash
-git clone https://github.com/yourusername/modbus-scanner-exploiter.git
+git clone https://github.com/rougesec/m0d_reconer.git
 cd m0d_reconer
 ```
 
