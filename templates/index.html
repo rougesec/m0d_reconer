@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>M0D-Reconer 🕵️‍♂️</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <script src="{{ url_for('static', filename='script.js') }}" defer></script>
+</head>
+<body class="bg-dark text-light">
+    <div class="container mt-4">
+        <h1 class="text-center">Modbus Recon & Exploit Tool</h1>
+        <div class="card bg-secondary p-3 mt-3">
+            <h3>Target Configuration</h3>
+            <div class="mb-2">
+                <label class="form-label">Target IP:</label>
+                <input type="text" id="ip" class="form-control" placeholder="Enter Target IP">
+            </div>
+            <div class="mb-2">
+                <label class="form-label">Port:</label>
+                <input type="number" id="port" class="form-control" value="502">
+            </div>
+            <div class="mb-2">
+                <label for="slave_id">Slave ID:</label>
+                <input type="number" id="slave_id" name="slave_id" value="1" min="1" max="247">
+            </div>
+            <div class="mb-2">
+                <label for="start_address">Start Address:</label>
+                <input type="number" id="start_address" placeholder="Start Address" value="0">
+            </div>
+            <div class="mb-2">
+                <label for="end_address">End Address:</label>
+                <input type="number" id="end_address" placeholder="End Address" value="10">
+            </div>
+        </div>
+
+        <div class="card bg-secondary p-3 mt-3">
+            <h3>Recon Options</h3>
+            <div class="form-check">
+                <input type="checkbox" id="scan_registers" class="form-check-input">
+                <label class="form-check-label">Scan Registers</label>
+            </div>
+            <div class="form-check">
+                <input type="checkbox" id="scan_coils" class="form-check-input">
+                <label class="form-check-label">Scan Coils</label>
+            </div>
+            <div class="form-check">
+                <input type="checkbox" id="scan_discrete_inputs" class="form-check-input">
+                <label class="form-check-label">Scan Discrete Inputs</label>
+            </div>
+            <div class="form-check">
+                <input type="checkbox" id="scan_input_registers" class="form-check-input">
+                <label class="form-check-label">Scan Input Registers</label>
+            </div>
+            <button class="btn btn-primary mt-2" onclick="startScan()">Start Scan</button>
+            <button class="btn btn-danger mt-2" onclick="stopScan()">Stop Scan</button>
+        </div>
+
+        <div class="card bg-secondary p-3 mt-3">
+            <h3>Exploit Options</h3>
+            <div class="form-check">
+                <input type="checkbox" id="write_register" class="form-check-input">
+                <label class="form-check-label">Write Register</label>
+            </div>
+            <div class="mb-2">
+                <input type="number" id="register_address" class="form-control" placeholder="Register Address">
+                <input type="number" id="register_value" class="form-control mt-1" placeholder="Register Value">
+            </div>
+
+            <div class="form-check">
+                <input type="checkbox" id="write_coil" class="form-check-input">
+                <label class="form-check-label">Write Coil</label>
+            </div>
+            <div class="mb-2">
+                <input type="number" id="coil_address" class="form-control" placeholder="Coil Address">
+                <input type="checkbox" id="coil_value" class="form-check-input mt-2">
+                <label class="form-check-label">Set Coil High</label>
+            </div>
+            <button class="btn btn-warning mt-2" onclick="startExploit()">Start Exploit</button>
+        </div>
+
+        <div class="card bg-dark p-3 mt-3">
+            <h3>Results</h3>
+            <pre id="results" class="p-2 bg-light text-dark"></pre>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
